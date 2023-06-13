@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "WayBack Machine Reddit",
+    "description": "The name of the application"
+  },
+  "appShortName": {
+    "message": "WBM Reddit",
+    "description": "The short_name (maximum of 12 characters recommended) is a short version of the app's name."
+  },
+  "appDescription": {
+    "message": "Always use WayBack machine (archive.org) for reddit links",
+    "description": "The description of the application"
+  }
+}

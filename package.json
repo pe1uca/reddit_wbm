@@ -1,0 +1,12 @@
+{
+  "name": "WayBack-Machine-Reddit",
+  "version": "0.0.1",
+  "description": "Always use WayBack machine (archive.org) for reddit links",
+  "scripts": {
+    "dev": "webextension-toolbox dev",
+    "build": "webextension-toolbox build"
+  },
+  "devDependencies": {
+    "webextension-toolbox": "latest"
+  }
+}
