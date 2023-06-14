@@ -1,10 +1,10 @@
 {
   "appName": {
-    "message": "WayBack Machine Reddit",
+    "message": "Reddit to WayBack Machine",
     "description": "The name of the application"
   },
   "appShortName": {
-    "message": "WBM Reddit",
+    "message": "Reddit to WBM",
     "description": "The short_name (maximum of 12 characters recommended) is a short version of the app's name."
   },
   "appDescription": {

@@ -1,5 +1,23 @@
-browser.runtime.onInstalled.addListener((details) => {
-  console.log('previousVersion', details.previousVersion)
-})
+browser.webRequest.onBeforeRequest.addListener(
+  checkWBM,
+  { urls: ["*://*.reddit.com/*"], types: ["main_frame"] },
+  ["blocking"]
+);
 
-console.log(`'Allo 'Allo! Event Page`)
+async function checkWBM(details) {
+  if (details.tabId === -1 || details.method !== "GET") {
+    return;
+  }
+
+  let url = details.url;
+  if (!url.match(/^(http(s)?:\/\/)old\.reddit\.com/)) {
+    url = "old.reddit.com" + url.split("reddit.com")[1];
+  }
+
+  const wbmResponse = await fetch(`https://archive.org/wayback/available?url=${url}`);
+  const wbmJSON = JSON.parse(await wbmResponse.text());
+
+  return {
+    redirectUrl: wbmJSON.archived_snapshots.closest.url
+  };
+}
