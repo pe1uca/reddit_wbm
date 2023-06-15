@@ -10,5 +10,9 @@
   "appDescription": {
     "message": "Always use WayBack machine (archive.org) for reddit links",
     "description": "The description of the application"
+  },
+  "actionTitle": {
+    "message": "Reddit to WBM",
+    "description": "Tooltip for browser action icon"
   }
 }

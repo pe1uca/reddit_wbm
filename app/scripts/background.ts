@@ -1,14 +1,28 @@
 browser.webRequest.onBeforeRequest.addListener(
-  checkWBM,
-  { urls: ["*://*.reddit.com/*"], types: ["main_frame"] },
-  ["blocking"]
-);
-
-browser.webRequest.onBeforeRequest.addListener(
   (details) => { return { upgradeToSecure: true } },
   { urls: ["http://*.archive.org/*"], types: ["main_frame"] },
   ["blocking"]
 );
+
+browser.storage.local.get('enableRWBM').then((value) => {
+  if (!value.enableRWBM) setRWBMEnabled(true);
+});
+
+browser.storage.local.onChanged.addListener((changes) => {
+  if(changes.enableRWBM) setRWBMEnabled(changes.enableRWBM.newValue);
+});
+
+function setRWBMEnabled(enabled: boolean) {
+  browser.webRequest.onBeforeRequest.removeListener(checkWBM);
+
+  if (enabled) {
+    browser.webRequest.onBeforeRequest.addListener(
+      checkWBM,
+      { urls: ["*://*.reddit.com/*"], types: ["main_frame"] },
+      ["blocking"]
+    );
+  }
+}
 
 async function checkWBM(details: browser.webRequest._OnBeforeRequestDetails): Promise<browser.webRequest.BlockingResponse> {
   if (details.tabId === -1 || details.method !== "GET") {

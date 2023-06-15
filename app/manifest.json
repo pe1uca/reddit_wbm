@@ -2,7 +2,7 @@
   "name": "__MSG_appName__",
   "short_name": "__MSG_appShortName__",
   "description": "__MSG_appDescription__",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "manifest_version": 2,
   "default_locale": "en",
   "icons": {
@@ -11,7 +11,8 @@
   },
   "permissions": [
     "*://*.reddit.com/*",
-    "https://web.archive.org/*",
+    "*://web.archive.org/*",
+    "storage",
     "webRequest",
     "webRequestBlocking"
   ],
@@ -19,5 +20,14 @@
     "scripts": [
       "scripts/background.js"
     ]
+  },
+  "page_action": {
+    "default_title": "__MSG_actionTitle__",
+    "default_popup": "html/settings.html",
+    "default_icon": "images/icon-128.png",
+    "show_matches": ["*://*.reddit.com/*", "https://web.archive.org/*"]
+  },
+  "options_ui": {
+    "page": "html/settings.html"
   }
 }
