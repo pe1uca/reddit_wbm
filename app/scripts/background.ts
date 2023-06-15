@@ -4,9 +4,9 @@ browser.webRequest.onBeforeRequest.addListener(
   ["blocking"]
 );
 
-async function checkWBM(details) {
+async function checkWBM(details: browser.webRequest._OnBeforeRequestDetails): Promise<browser.webRequest.BlockingResponse> {
   if (details.tabId === -1 || details.method !== "GET") {
-    return;
+    return {};
   }
 
   let url = details.url;
