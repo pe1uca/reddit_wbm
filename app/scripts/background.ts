@@ -4,6 +4,12 @@ browser.webRequest.onBeforeRequest.addListener(
   ["blocking"]
 );
 
+browser.webRequest.onBeforeRequest.addListener(
+  (details) => { return { upgradeToSecure: true } },
+  { urls: ["http://*.archive.org/*"], types: ["main_frame"] },
+  ["blocking"]
+);
+
 async function checkWBM(details: browser.webRequest._OnBeforeRequestDetails): Promise<browser.webRequest.BlockingResponse> {
   if (details.tabId === -1 || details.method !== "GET") {
     return {};
